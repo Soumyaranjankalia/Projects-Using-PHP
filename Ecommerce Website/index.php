@@ -1,3 +1,7 @@
+<?php
+include("./includes/connect.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,7 +92,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-2">
-                    <div class="card">
+                        <div class="card">
                             <img src="./images/capsicum.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
@@ -99,7 +103,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-2">
-                    <div class="card">
+                        <div class="card">
                             <img src="./images/dairy1.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
@@ -110,7 +114,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                    <div class="card">
+                        <div class="card">
                             <img src="./images/apple.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
@@ -121,7 +125,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                    <div class="card">
+                        <div class="card">
                             <img src="./images/apple.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
@@ -132,7 +136,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                    <div class="card">
+                        <div class="card">
                             <img src="./images/apple.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
@@ -149,44 +153,43 @@
                 <!-- brands to be displayed -->
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item bg-info">
-                        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
+                        <a href="#" class="nav-link text-light">
+                            <h4>Delivery Brands</h4>
+                        </a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brands 1</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brand 2</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brand 3</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brand 4</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Brand 5</a>
-                    </li>
+
+                    <?php
+                    $select_brands = "SELECT * FROM `brands`";
+                    $result_brands = mysqli_query($con, $select_brands);
+                    while ($row_data = mysqli_fetch_assoc($result_brands)) {
+                        $brand_title = $row_data['brand_title'];
+                        $brand_id = $row_data['brand_id'];
+                        echo    "<li class='nav-item '>
+                                    <a href='index.php?brand=$brand_id' class='nav-link text-light'>$brand_title</a>
+                                </li>";
+                    }
+                    ?>
                 </ul>
+
                 <!-- categories to be displayed -->
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item bg-info">
-                        <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
+                        <a href="#" class="nav-link text-light">
+                            <h4>Categories</h4>
+                        </a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Categories 1</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Categories 2</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Categories 3</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Categories 4</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-light">Categories 5</a>
-                    </li>
+
+                    <?php
+                    $select_categories = "SELECT * FROM `categories`";
+                    $result_categories = mysqli_query($con, $select_categories);
+                    while ($row_data = mysqli_fetch_assoc($result_categories)) {
+                        $category_title = $row_data['category_title'];
+                        $category_id = $row_data['category_id'];
+                        echo    "<li class='nav-item '>
+                                    <a href='index.php?category=$category_id' class='nav-link text-light'>$category_title</a>
+                                </li>";
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
